@@ -1,0 +1,14 @@
+- name: configuration for database
+  hosts: 174.129.103.180
+  become: yes
+  tasks:
+  - name: installing the mysql174.129.103.180
+    ansible.builtin.dnf:
+      name: mysql-server
+      state: present
+
+  - name: stsrting the systemctl service for mysql
+    ansible.builtin.systemd_service:
+      name: mysqld
+      enabled: true
+      state: started
