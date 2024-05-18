@@ -23,5 +23,5 @@
     
   - name: setting the mysql root password
     ansible.builtin.command:
-     mysqladmin -u root password '{{ mysql_root_password }}
+     mysqladmin -u root password '{{ mysql_root_password }}'
     when: mysql_root_password_check.failed
