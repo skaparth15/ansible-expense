@@ -1,5 +1,5 @@
 - name: configuration of backend server
-  hosts:
+  hosts: backend
   become: yes
   tasks:
   - name: disabling the current vesrion of nodejs
