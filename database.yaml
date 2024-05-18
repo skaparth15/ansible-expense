@@ -1,5 +1,5 @@
 - name: configuration for database
-  hosts: 174.129.103.180
+  hosts: 54.91.186.1
   become: yes
   tasks:
   - name: installing the mysql174.129.103.180
