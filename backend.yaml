@@ -39,6 +39,13 @@
     args: 
       chdir: /app
 
+  - name: install python mysql dependencies
+    ansible.builtin.pip: 
+      name:
+      - PyMySQL # to connect MySQL DB from Ansible
+      - cryptography
+      executable: pip3.9 # pip3.11 if python version is 3.11
+
 
   - name: import data into mysql
     community.mysql.mysql_db:
