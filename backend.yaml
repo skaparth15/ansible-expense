@@ -1,6 +1,8 @@
 - name: configuration of backend server
   hosts: backend
   become: yes
+  vars:
+    login_password: 'ExpenseApp'
   tasks:
   - name: disabling the current vesrion of nodejs
     ansible.builtin.command: dnf module disable nodejs -y
