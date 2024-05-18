@@ -15,4 +15,15 @@
     ansible.builtin.user:
       name: expense
 
+  - name: creating a directory for application
+    ansible.builtin.file:
+      path: /app
+      state: directory
+
+  - name: downloading the code from the given url
+    ansible.builtin.get_url:
+      url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
+      dest: /tmp/backend.zip
+        
+
 
