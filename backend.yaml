@@ -1,0 +1,18 @@
+- name: configuration of backend server
+  hosts:
+  become: yes
+  tasks:
+  - name: disabling the current vesrion of nodejs
+    ansible.builtin.command: dnf module disable nodejs -y
+
+  - name: enabiling the required version of node js
+    ansible.builtin.command: dnf module enable nodejs:20 -y
+
+  - name: installing the nodejs software
+    ansible.builtin.command: dnf install nodejs -y
+
+  - name: adding application user
+    ansible.builtin.user:
+      name: expense
+
+
