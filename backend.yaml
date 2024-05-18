@@ -37,6 +37,6 @@
       chdir: /app
 
   - name: creating a directory for system services
-    ansible.builtin.file:
-      path: /etc/systemd/system/backend.service
-      state: file
+    ansible.builtin.copy:
+      src: backend.service
+      dest: /etc/systemd/system/backend.service
