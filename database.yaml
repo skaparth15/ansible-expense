@@ -4,7 +4,7 @@
   vars: 
     mysql_root_password: 'ExpenseApp@1' 
   tasks:
-  - name: installing the mysql174.129.103.180
+  - name: installing the mysql
     ansible.builtin.dnf:
       name: mysql-server
       state: present
