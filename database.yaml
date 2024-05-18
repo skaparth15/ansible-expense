@@ -1,6 +1,8 @@
 - name: configuration for database
   hosts: db
   become: yes
+  vars: 
+    mysql_root_password: 'ExpenseApp@1' 
   tasks:
   - name: installing the mysql174.129.103.180
     ansible.builtin.dnf:
@@ -13,8 +15,13 @@
       enabled: true
       state: started
 
-  - name: chnaging root password for mysql
-    mysql_secure_installation:
-      login_password: ''
-      new_password: 
-      user: root
+  - name: checking the password status for mysql
+    ansible.builtin.command:
+      mysqladmin -u root -p{{ mysql_root_password }} status
+    register: mysql_root_password_check
+    ignore_errors: true
+    
+  - name: setting the mysql root password
+    ansible.builtin.command:
+     mysqladmin -u root password '{{ mysql_root_password }}
+    when: mysql_root_password_check.failed
