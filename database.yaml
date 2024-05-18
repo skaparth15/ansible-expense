@@ -12,3 +12,9 @@
       name: mysqld
       enabled: true
       state: started
+
+  - name: chnaging root password for mysql
+    mysql_secure_installation:
+      login_password: ''
+      new_password: 
+      user: root
