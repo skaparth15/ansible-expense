@@ -3,7 +3,7 @@
   become: yes
   vars:
     login_password: 'ExpenseApp'
-    login_host: 172.31.16.40
+    login_host: db
   tasks:
   - name: disabling the current vesrion of nodejs
     ansible.builtin.command: dnf module disable nodejs -y
