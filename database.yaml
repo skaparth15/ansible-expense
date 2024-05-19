@@ -3,7 +3,7 @@
   become: yes
   vars: 
     mysql_root_password: ExpenseApp@1 
-    login_host: '172.31.16.40'
+    login_host: db.ilovedevops.cloud
   tasks:
   - name: installing the mysql
     ansible.builtin.dnf:
@@ -32,6 +32,11 @@
       filter: version
     ignore_errors: yes
     register: mysql_connection_output
+
+  - name: print output
+    ansible.builtin.debug:
+      msg: "Output: {{mysql_connection_output}} "
+
     
   - name: setup root password
     ansible.builtin.command: "mysql_secure_installation --set-root-pass {{ mysql_root_password }}"
