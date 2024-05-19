@@ -2,7 +2,7 @@
   hosts: backend
   become: yes
   vars:
-    login_password: 'ExpenseApp'
+    login_password: 'ExpenseApp@1'
     login_host: '172.31.16.40'
   tasks:
   - name: disabling the current vesrion of nodejs
@@ -52,6 +52,12 @@
       executable: pip3.9 # pip3.11 if python version is 3.11
 
 
+  - name: creating a directory for system services
+    ansible.builtin.copy:
+      src: backend.service
+      dest: /etc/systemd/system/backend.service
+
+
   - name: import data into mysql
     community.mysql.mysql_db:
       login_user: root
@@ -61,12 +67,6 @@
       state: import
       name: all
 
-  - name: creating a directory for system services
-    ansible.builtin.copy:
-      src: backend.service
-      dest: /etc/systemd/system/backend.service
-
-  
 
   - name: starting the backend service
     ansible.builtin.systemd_service:
