@@ -42,7 +42,7 @@
   - name: installing mysql
     ansible.builtin.dnf:
       name: mysql
-      state: present
+      state: insatlled
 
   - name: install python mysql dependencies
     ansible.builtin.pip: 
