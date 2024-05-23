@@ -14,14 +14,14 @@
 
     - name: removing the existing files 
       ansible.builtin.files:
-      path: /usr/share/nginx/html
-      state: absent
+        path: /usr/share/nginx/html
+        state: absent
 
 
     - name: creating the html directory
       ansible.builtin.files:
-      path: /usr/share/nginx/html
-      state: directory
+        path: /usr/share/nginx/html
+        state: directory
 
 
     - name: unzipping the contents to the original location
