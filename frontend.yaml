@@ -13,13 +13,13 @@
         atate: started
 
     - name: removing the existing files 
-      ansible.builtin.files:
+      ansible.builtin.file:
         path: /usr/share/nginx/html
         state: absent
 
 
     - name: creating the html directory
-      ansible.builtin.files:
+      ansible.builtin.file:
         path: /usr/share/nginx/html
         state: directory
 
