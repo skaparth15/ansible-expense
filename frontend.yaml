@@ -1,0 +1,42 @@
+- name: configuration of frontend server
+  hosts:
+  tasks:
+    - name: installating nginx server
+      ansible.builtin.dnf:
+       name: nginx
+       state: present
+
+    - name: enabiling nginx service
+      ansible.builtin.systemd_service:
+        name: nginx
+        enabled: true
+        atate: started
+
+    - name: removing the existing files under the  /usr/share/nginx/html/ path
+      ansible.builtin.files:
+      path: /usr/share/nginx/html
+      state: absent
+
+
+    - name: creating the html directory
+      ansible.builtin.files:
+      path: /usr/share/nginx/html
+      state: directory
+
+
+    - name: unzipping the contents to the original location
+      ansible.builtin.unarchive:
+        src: https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
+        dest: /usr/share/nginx/html
+
+    - name: creating reverse proxy configuration for handling frontend requests
+      ansible.builtin.copy:
+      src: #expense.conf path
+      dest: /etc/nginx/default.d/
+      remote_src: yes
+
+    - name: Restarting the nginx service
+      ansible.builtin.systemd_service:
+        name: nginx
+        state: restarted      
+
