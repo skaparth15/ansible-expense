@@ -1,5 +1,5 @@
 - name: configuration of frontend server
-  hosts:
+  hosts: frontend
   tasks:
     - name: installating nginx server
       ansible.builtin.dnf:
@@ -31,7 +31,7 @@
 
     - name: creating reverse proxy configuration for handling frontend requests
       ansible.builtin.copy:
-      src: #expense.conf path
+      src: expense.conf
       dest: /etc/nginx/default.d/
       remote_src: yes
 
