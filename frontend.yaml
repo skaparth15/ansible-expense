@@ -27,8 +27,9 @@
 
     - name: unzipping the contents to the original location
       ansible.builtin.unarchive:
-        url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
+        src: https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
         dest: /usr/share/nginx/html
+        remote_src: yes
 
     - name: creating reverse proxy configuration for handling frontend requests
       ansible.builtin.copy:
